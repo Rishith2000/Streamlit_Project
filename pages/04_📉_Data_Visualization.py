@@ -21,6 +21,8 @@ if st.checkbox('Bar Chart'):
     x=st.selectbox('Select x-axis',b)
     y=st.selectbox('Select y-axis :',b)
     hist = alt.Chart(data).mark_bar().encode(x=x,y=y)
+    if(x!=" " and y!=" "):
+        st.altair_chart(hist)
     #st.line_chart(data[a])
     
     
