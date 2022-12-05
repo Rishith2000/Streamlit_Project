@@ -3,7 +3,7 @@ from lazypredict.Supervised import LazyClassifier
 from lazypredict.Supervised import LazyRegressor
 from sklearn.model_selection import train_test_split
 import streamlit as st 
-
+st.subheader("Automation")
 @st.cache
 def classifier(X_train, X_test, y_train, y_test):
     clf = LazyClassifier(verbose=1, ignore_warnings=True, custom_metric = None)
