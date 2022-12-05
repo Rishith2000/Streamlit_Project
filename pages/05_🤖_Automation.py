@@ -31,7 +31,7 @@ if(c=='Classification'):
         X.drop(v,axis=1,inplace=True)
 
 
-        ratio=st.slider(label='Select the split ratio',min_value=0.0,max_value=1.0,step=0.1,value=0.8)
+        ratio=st.slider(label='Select the train-test split ratio',min_value=0.0,max_value=1.0,step=0.1,value=0.8)
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1-ratio)
 
