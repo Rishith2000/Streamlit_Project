@@ -27,9 +27,9 @@ if(c=='Classification'):
     v=st.selectbox('Please select the target column',l,key = "156")
     if(v!=" "):
         y=X[v]
-#st.write(y)
+
         X.drop(v,axis=1,inplace=True)
-    #st.write(X)
+
 
         ratio=st.slider(label='Select the split ratio',min_value=0.0,max_value=1.0,step=0.1,value=0.8)
 
@@ -53,7 +53,7 @@ if(c=='Regression'):
         X.drop(v,axis=1,inplace=True)
  
 
-        ratio=st.slider(label='Select the split ratio',min_value=0.0,max_value=1.0,step=0.1,value=0.8)
+        ratio=st.slider(label='Select the train-test split ratio',min_value=0.0,max_value=1.0,step=0.1,value=0.8)
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=ratio)
     
