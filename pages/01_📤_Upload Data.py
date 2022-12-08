@@ -6,7 +6,7 @@ st.subheader('Upload Data')
 
 st.write('Here you can upload your ***CSV file* **')
 
-st.write("[Click here](https://github.com/zlkdfb/CSV) for sample **CSV** files")
+st.write("[Click here](https://github.com/UR26/CSV) for sample **CSV** files")
 
 
 
