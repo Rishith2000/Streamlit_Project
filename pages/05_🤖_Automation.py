@@ -4,7 +4,7 @@ from lazypredict.Supervised import LazyRegressor
 from sklearn.model_selection import train_test_split
 import streamlit as st 
 st.subheader("Automation")
-if 'data' in st.session_state:
+if 'data' not in st.session_state:
     st.warning('Upload a CSV file in Upload Data page')
 else:
     @st.cache
