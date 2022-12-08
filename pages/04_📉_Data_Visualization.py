@@ -3,7 +3,7 @@ import altair as alt
 import seaborn as sns
 import matplotlib.pyplot as plt
 st.subheader('Data Visualization')
-if 'data' in st.session_state:
+if 'data' not in st.session_state:
     st.warning('Upload a CSV file in Upload Data page')
 else:
 
