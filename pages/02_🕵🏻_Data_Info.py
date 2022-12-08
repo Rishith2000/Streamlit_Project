@@ -2,7 +2,7 @@ import streamlit as st
 import altair as alt
 
 st.subheader('Data Info')
-if 'data' in st.session_state:
+if 'data' not in st.session_state:
     st.warning('Upload a CSV file in Upload Data page')
 else:
     data=st.session_state['data']
