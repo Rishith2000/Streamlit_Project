@@ -87,19 +87,19 @@ else:
 
             # model evaluation
             if len(models) > 0:
-            best_model = models.iloc[0]
-            st.write("Best Model: ", best_model[0])
-            scaler = StandardScaler()
-            X_train_scaled = scaler.fit_transform(X_train)
-            X_test_scaled = scaler.transform(X_test)
-            if hasattr(best_model[1], "predict_proba"): # handle probabilistic predictions
-                y_pred = best_model[1].predict_proba(X_test_scaled)[:, 1]
-            else:
-                y_pred = best_model[1].predict(X_test_scaled)
-    if c=='Classification':
+                best_model = models.iloc[0]
+                st.write("Best Model: ", best_model[0])
+                scaler = StandardScaler()
+                X_train_scaled = scaler.fit_transform(X_train)
+                X_test_scaled = scaler.transform(X_test)
+                if hasattr(best_model[1], "predict_proba"): # handle probabilistic predictions
+                    y_pred = best_model[1].predict_proba(X_test_scaled)[:, 1]
+                else:
+                    y_pred = best_model[1].predict(X_test_scaled)
+            if c=='Classification':
                 score = accuracy_score(y_test, y_pred.round())
                 st.write("Accuracy: ", score)
-    else:
+            else:
                 score = r2_score(y_test, y_pred)
                 mse = mean_squared_error(y_test, y_pred)
                 st.write("R2 Score: ", score)
