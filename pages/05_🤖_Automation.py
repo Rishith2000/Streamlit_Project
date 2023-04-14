@@ -96,10 +96,10 @@ else:
                 y_pred = best_model[1].predict_proba(X_test_scaled)[:, 1]
             else:
                 y_pred = best_model[1].predict(X_test_scaled)
-            if c=='Classification':
+    if c=='Classification':
                 score = accuracy_score(y_test, y_pred.round())
                 st.write("Accuracy: ", score)
-            else:
+    else:
                 score = r2_score(y_test, y_pred)
                 mse = mean_squared_error(y_test, y_pred)
                 st.write("R2 Score: ", score)
