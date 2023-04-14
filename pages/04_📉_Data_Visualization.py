@@ -72,6 +72,13 @@ else:
     elif chart_type == 'Bar Chart':
         bar_chart(data)
     elif chart_type == 'Line Chart':
+        line_chart(data)
+    elif chart_type == 'Area Chart':
+        area_chart(data)
+    elif chart_type == 'Scatter Plot':
+        scatter_plot(data)
+    elif chart_type == 'Heatmap':
+        heatmap(data)
        
 
 
