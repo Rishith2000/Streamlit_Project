@@ -6,12 +6,11 @@ st.subheader('Pandas Profiling')
 if 'data' not in st.session_state:
     st.warning('Upload a CSV file in Upload Data page')
 else:
-    def report(data):
-        
+    data = st.session_state['data']
+    with st.spinner('Generating report...'):
         pr = ProfileReport(data, explorative=True)
-        return pr
-    data=st.session_state['data']
-    pr=report(data)
+    st.success('Report generated successfully.')
+    
 #pr.to_file('Analysis.html')
 
     st_profile_report(pr)
