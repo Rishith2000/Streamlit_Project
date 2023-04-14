@@ -2,21 +2,31 @@ import lazypredict
 from lazypredict.Supervised import LazyClassifier
 from lazypredict.Supervised import LazyRegressor
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, r2_score, mean_squared_error
 import streamlit as st 
+
 st.subheader("Automation")
+
 if 'data' not in st.session_state:
     st.warning('Upload a CSV file in Upload Data page')
 else:
     @st.cache
     def classifier(X_train, X_test, y_train, y_test):
+        scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(X_train)
+        X_test_scaled = scaler.transform(X_test)
         clf = LazyClassifier(verbose=1, ignore_warnings=True, custom_metric = None)
-        models,predictions = clf.fit(X_train, X_test, y_train, y_test)
+        models,predictions = clf.fit(X_train_scaled, X_test_scaled, y_train, y_test)
         return models,predictions
 
     @st.cache
     def regressor(X_train, X_test, y_train, y_test):
-        reg = LazyClassifier(verbose=1, ignore_warnings=False, custom_metric = None)
-        models,predictions = reg.fit(X_train, X_test, y_train, y_test)
+        scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(X_train)
+        X_test_scaled = scaler.transform(X_test)
+        reg = LazyRegressor(verbose=1, ignore_warnings=False, custom_metric = None)
+        models,predictions = reg.fit(X_train_scaled, X_test_scaled, y_train, y_test)
         return models,predictions
 
 
@@ -44,6 +54,18 @@ else:
         
             models,predictions=classifier(X_train, X_test, y_train, y_test)
             st.write(models)
+
+            # model evaluation
+            if len(models) > 0:
+                best_model = models.iloc[0]
+                st.write("Best Model: ", best_model[0])
+                scaler = StandardScaler()
+                X_train_scaled = scaler.fit_transform(X_train)
+                X_test_scaled = scaler.transform(X_test)
+                y_pred = best_model[1].predict(X_test_scaled)
+                score = accuracy_score(y_test, y_pred)
+                st.write("Accuracy: ", score)
+
     if(c=='Regression'):
         X=data.copy()
         l=[" "]
@@ -62,6 +84,20 @@ else:
         
             models,predictions=regressor(X_train, X_test, y_train, y_test)
             st.write(models)
+
+            # model evaluation
+            if len(models) > 0:
+                best_model = models.iloc[0]
+                st.write("Best Model: ", best_model[0])
+                scaler = StandardScaler()
+                X_train_scaled = scaler.fit_transform(X_train)
+                X_test_scaled = scaler.transform(X_test)
+                y_pred = best_model[1].predict(X_test_scaled)
+                score = r2_score(y_test, y_pred)
+                st.write("R2 Score: ", score)
+                mse = mean_squared_error(y_test, y_pred)
+                st.write("Mean Squared Error: ", mse)
+
 
 
     
