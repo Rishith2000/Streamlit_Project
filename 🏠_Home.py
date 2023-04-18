@@ -10,3 +10,4 @@ st.write('This application will help you in visualizing and generating pandas pr
 st.write('Pandas profiling offers report generation for the dataset with lots of features and customizations for the report generated')
 
 
+st.markdown('<style>body{background-color: #E5E5E5;}</style>',unsafe_allow_html=True)
