@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_pandas_profiling import st_profile_report
-from pandas_profiling import ProfileReport
+from ydata_profiling import ProfileReport
 
 st.subheader('Pandas Profiling')
 if 'data' not in st.session_state:
